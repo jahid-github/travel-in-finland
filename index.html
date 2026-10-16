@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="fi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finnish A2 Interactive Study Guide - HAMK Prep</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 font-sans flex flex-col antialiased">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-600 text-white p-2 rounded-xl shadow-md flex items-center justify-center">
+                    <i class="fa-solid fa-book-open-reader text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900 leading-tight">Suomi A2 Study Guide</h1>
+                    <p class="text-xs text-slate-500">HAMK University Scholarship Test Preparation</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-1 lg:space-x-2">
+                <button onclick="switchTab('stories')" id="nav-stories" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-brand-50 text-brand-700">
+                    <i class="fa-solid fa-book mr-1.5"></i> Stories (1-6)
+                </button>
+                <button onclick="switchTab('vocabulary')" id="nav-vocabulary" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-language mr-1.5"></i> Vocabulary & Flashcards
+                </button>
+                <button onclick="switchTab('quiz')" id="nav-quiz" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-square-check mr-1.5"></i> 30 Exam Questions
+                </button>
+                <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Grammar & Tips
+                </button>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button onclick="toggleMobileMenu()" class="text-slate-600 hover:text-slate-900 p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1">
+            <button onclick="switchTab('stories'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Stories</button>
+            <button onclick="switchTab('vocabulary'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Vocabulary</button>
+            <button onclick="switchTab('quiz'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Exam Quiz</button>
+            <button onclick="switchTab('grammar'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Grammar & Tips</button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-y-auto">
+
+        <!-- TAB 1: STORIES & TRANSLATIONS -->
+        <section id="tab-stories" class="tab-content space-y-6">
+            <div class="bg-gradient-to-r from-brand-600 to-emerald-700 text-white rounded-2xl p-6 shadow-lg">
+                <div class="max-w-3xl">
+                    <span class="bg-emerald-500/35 text-emerald-100 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Reading & Comprehension</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mt-2">The Six Illustrated Stories</h2>
+                    <p class="mt-2 text-emerald-100 text-sm sm:text-base">Read sentence by sentence with English translations. Click listen or tap any sentence to hear pronunciation.</p>
+                </div>
+            </div>
+
+            <!-- Story Selector Buttons -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="story-selector">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Active Story Viewer -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6" id="story-viewer">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 2: VOCABULARY & FLASHCARDS -->
+        <section id="tab-vocabulary" class="tab-content hidden space-y-6">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl p-6 shadow-lg">
+                <div class="max-w-3xl">
+                    <span class="bg-blue-500/30 text-blue-100 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Vocabulary Hub</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mt-2">Complete Vocabulary Explorer & Flashcards</h2>
+                    <p class="mt-2 text-blue-100 text-sm sm:text-base">Search words across all 6 stories, review base forms (perusmuoto), and test yourself with interactive flashcards.</p>
+                </div>
+            </div>
+
+            <!-- Flashcard mode toggle & controls -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                <div class="flex flex-col sm:flex-row justify-between items-center pb-6 border-b border-slate-100 gap-4">
+                    <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
+                        <div class="relative w-full sm:w-80">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400"></i>
+                            <input type="text" id="vocab-search" placeholder="Search Finnish or English word..." oninput="filterVocabulary()" class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                        <select id="vocab-lesson-filter" onchange="filterVocabulary()" class="w-full sm:w-auto py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option value="all">All Lessons</option>
+                            <option value="1">Lesson 1: Lapland</option>
+                            <option value="2">Lesson 2: KAJ Concert</option>
+                            <option value="3">Lesson 3: Turku & Åland</option>
+                            <option value="4">Lesson 4: Helsinki</option>
+                            <option value="5">Lesson 5: Eastern Finland</option>
+                            <option value="6">Lesson 6: Tampere Sauna</option>
+                        </select>
+                    </div>
+                    <button onclick="openFlashcardModal()" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-clone"></i>
+                        <span>Study with Flashcards</span>
+                    </button>
+                </div>
+
+                <!-- Vocabulary Table -->
+                <div class="overflow-x-auto mt-6">
+                    <table class="min-w-full divide-y divide-slate-200 text-left">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 uppercase text-xs tracking-wider">
+                                <th class="py-3 px-4 font-semibold">Word in Story</th>
+                                <th class="py-3 px-4 font-semibold">Base Form (Lemma)</th>
+                                <th class="py-3 px-4 font-semibold">English Meaning</th>
+                                <th class="py-3 px-4 font-semibold">Lesson</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vocab-table-body" class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: 30 EXAM QUESTIONS QUIZ -->
+        <section id="tab-quiz" class="tab-content hidden space-y-6">
+            <div class="bg-gradient-to-r from-amber-600 to-orange-700 text-white rounded-2xl p-6 shadow-lg">
+                <div class="max-w-3xl">
+                    <span class="bg-amber-500/30 text-amber-100 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Exam Simulation</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mt-2">A2 Reading Practice & Exam Questions</h2>
+                    <p class="mt-2 text-amber-100 text-sm sm:text-base">Test your understanding with reading questions covering all 6 stories. Get instant feedback, explanations, and track your score.</p>
+                </div>
+            </div>
+
+            <!-- Quiz Controls / Selector -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
+                    <label for="quiz-lesson-select" class="font-medium text-sm text-slate-700">Select Lesson:</label>
+                    <select id="quiz-lesson-select" onchange="loadQuizForLesson()" class="w-full sm:w-auto py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="1">Lesson 1: Amina ja mummo Lapissa</option>
+                        <option value="2">Lesson 2: Heini ja John KAJ:n konsertissa</option>
+                        <option value="3">Lesson 3: John Turussa ja Ahvenanmaalla</option>
+                        <option value="4">Lesson 4: Päivä Helsingissä</option>
+                        <option value="5">Lesson 5: Amina Itä-Suomessa</option>
+                        <option value="6">Lesson 6: Yleisessä saunassa Tampereella</option>
+                        <option value="all">All 30 Questions (Full Test)</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-start">
+                    <span id="quiz-score-badge" class="bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl text-sm font-semibold">Score: 0 / 5</span>
+                    <button onclick="resetQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl text-sm font-medium transition">
+                        <i class="fa-solid fa-rotate-right mr-1.5"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div id="quiz-questions-container" class="space-y-6">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="flex justify-end pb-12">
+                <button onclick="submitQuiz()" class="bg-brand-600 hover:bg-brand-700 text-white font-medium px-6 py-3 rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Check All Answers</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 4: GRAMMAR & EXAM TIPS -->
+        <section id="tab-grammar" class="tab-content hidden space-y-6">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white rounded-2xl p-6 shadow-lg">
+                <div class="max-w-3xl">
+                    <span class="bg-purple-500/30 text-purple-100 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Exam Strategy & Grammar</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mt-2">Essential Question Words & Grammar Patterns</h2>
+                    <p class="mt-2 text-purple-100 text-sm sm:text-base">Master common Finnish question words, local cases, verb constraints, and model phrases for your scholarship test.</p>
+                </div>
+            </div>
+
+            <!-- Question Words Grid -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center">
+                    <i class="fa-solid fa-circle-question text-purple-600 mr-2"></i> Common Finnish Question Words
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="question-words-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- High Frequency Grammar Patterns -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center">
+                    <i class="fa-solid fa-book-bookmark text-purple-600 mr-2"></i> High-Frequency Grammar Patterns
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-200 text-left">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 uppercase text-xs tracking-wider">
+                                <th class="py-3 px-4 font-semibold">Pattern</th>
+                                <th class="py-3 px-4 font-semibold">Example in Finnish</th>
+                                <th class="py-3 px-4 font-semibold">English Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grammar-patterns-body" class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Model Phrases for Writing/Speaking -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center">
+                    <i class="fa-solid fa-comments text-purple-600 mr-2"></i> Model Phrases for Writing and Speaking
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="model-phrases-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Flashcard Modal -->
+    <div id="flashcard-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center">
+                    <i class="fa-solid fa-clone text-brand-600 mr-2"></i> Vocabulary Flashcards
+                </h3>
+                <button onclick="closeFlashcardModal()" class="text-slate-400 hover:text-slate-600 p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Flashcard Card -->
+            <div onclick="flipFlashcard()" class="w-full h-64 bg-gradient-to-br from-slate-50 to-brand-50 border-2 border-brand-100 rounded-2xl flex flex-col items-center justify-center p-6 text-center cursor-pointer shadow-inner relative transition-transform duration-300 select-none">
+                <span id="flashcard-counter" class="absolute top-4 left-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Card 1 of 10</span>
+                <span id="flashcard-lesson-tag" class="absolute top-4 right-4 text-xs bg-brand-100 text-brand-700 px-2.5 py-1 rounded-full font-medium">Lesson 1</span>
+                
+                <div id="flashcard-content" class="space-y-3">
+                    <p class="text-2xl font-bold text-slate-900" id="flashcard-front">laskeudumme</p>
+                    <p class="text-xs text-slate-400 italic">(Click to flip for answer)</p>
+                </div>
+            </div>
+
+            <!-- Flashcard Controls -->
+            <div class="flex items-center justify-between pt-2">
+                <button onclick="prevFlashcard()" class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Previous</span>
+                </button>
+                <button onclick="nextFlashcard()" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-medium shadow-sm transition flex items-center space-x-1.5">
+                    <span>Next</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data structure for the 6 stories
+        const storiesData = [
+            {
+                id: 1,
+                title: "Amina ja mummo Lapissa",
+                subtitle: "Amina and Grandma in Lapland | Winter Nature & Holidays",
+                theme: "Travel, Winter, Holidays",
+                imagePlaceholder: "https://placehold.co/600x400/1e293b/ffffff?text=Amina+ja+mummo+Lapissa",
+                sentences: [
+                    { fi: "Kohta me laskeudumme Rovaniemelle.", en: "Soon we will land in Rovaniemi." },
+                    { fi: "Amina ja mummo haluavat kuvan Joulupukin kanssa.", en: "Amina and Grandma want a picture with Santa Claus." },
+                    { fi: "Tämä poro todella tykkää jäkälästä!", en: "This reindeer really likes lichen!" },
+                    { fi: "Yöllä mummo ja Amina katselevat revontulia taivaalla.", en: "At night, Grandma and Amina watch the Northern Lights in the sky." },
+                    { fi: "Lapin luonto on kaunis.", en: "Lapland's nature is beautiful." },
+                    { fi: "Amina nauttii hiihdosta hiljaisessa metsässä.", en: "Amina enjoys skiing in a quiet forest." },
+                    { fi: "On loman viimeinen ilta.", en: "It is the last evening of the holiday." },
+                    { fi: "\"Minä tulen Lappiin uudelleen\", mummo sanoo.", en: "\"I will come to Lapland again,\" Grandma says." },
+                    { fi: "He ovat iloisia.", en: "They are happy." },
+                    { fi: "Loma onnistui hienosti.", en: "The holiday went very well." }
+                ],
+                vocab: [
+                    { word: "kohta", base: "kohta", meaning: "soon, shortly", lesson: 1 },
+                    { word: "me", base: "me", meaning: "we", lesson: 1 },
+                    { word: "laskeudumme", base: "laskeutua", meaning: "we land, descend", lesson: 1 },
+                    { word: "Rovaniemelle", base: "Rovaniemi", meaning: "to Rovaniemi", lesson: 1 },
+                    { word: "Amina", base: "Amina", meaning: "person's name", lesson: 1 },
+                    { word: "haluavat", base: "haluta", meaning: "they want", lesson: 1 },
+                    { word: "kuvan", base: "kuva", meaning: "a photo (total object)", lesson: 1 },
+                    { word: "Joulupukin", base: "Joulupukki", meaning: "Santa Claus (genitive)", lesson: 1 },
+                    { word: "poro", base: "poro", meaning: "reindeer", lesson: 1 },
+                    { word: "tykkää", base: "tykätä", meaning: "likes", lesson: 1 },
+                    { word: "jäkälästä", base: "jäkälä", meaning: "lichen (elative)", lesson: 1 },
+                    { word: "revontulia", base: "revontulet", meaning: "Northern Lights (partitive)", lesson: 1 },
+                    { word: "nauttii", base: "nauttia", meaning: "enjoys", lesson: 1 },
+                    { word: "hiihdosta", base: "hiihto", meaning: "skiing (elative)", lesson: 1 },
+                    { word: "onnistui", base: "onnistua", meaning: "succeeded, went well", lesson: 1 }
+                ],
+                questions: [
+                    {
+                        q: "Kohta me laskeudumme...",
+                        options: ["A) Rovaniemellä", "B) Rovaniemelle", "C) Rovaniemeltä"],
+                        answer: 1,
+                        explanation: "Direction to Rovaniemi uses the -lle case ending: Rovaniemelle."
+                    },
+                    {
+                        q: "Mistä poro tykkää?",
+                        type: "short",
+                        answer: "jäkälästä",
+                        explanation: "The story states: 'Tämä poro todella tykkää jäkälästä!'"
+                    },
+                    {
+                        q: "Mitä Amina ja mummo katselevat yöllä?",
+                        type: "short",
+                        answer: "revontulia",
+                        explanation: "They watch the Northern Lights (revontulia)."
+                    },
+                    {
+                        q: "Oikein vai väärin? Amina hiihtää kaupungissa.",
+                        options: ["A) Oikein (True)", "B) Väärin (False)"],
+                        answer: 1,
+                        explanation: "False. Amina hiihtää hiljaisessa metsässä (in a quiet forest)."
+                    },
+                    {
+                        q: "Täydennä oikealla muodolla: Hän nauttii _________ (hiihto).",
+                        type: "short",
+                        answer: "hiihdosta",
+                        explanation: "Verb nauttia requires the elative case (-sta/-stä): hiihdosta."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Heini ja John KAJ:n konsertissa",
+                subtitle: "Heini and John at a KAJ Concert | Dates, Past Tense & Feelings",
+                theme: "Music, Past Tense, Travel",
+                imagePlaceholder: "https://placehold.co/600x400/0f172a/ffffff?text=Heini+ja+John+KAJ%3An+konsertissa",
+                sentences: [
+                    { fi: "On loppukesä, 22. elokuuta.", en: "It is late summer, August 22." },
+                    { fi: "Heini ja John istuvat bussissa.", en: "Heini and John are sitting on a bus." },
+                    { fi: "He heräsivät aikaisin.", en: "They woke up early." },
+                    { fi: "Bussi Vaasaan lähti aamulla kello viisi.", en: "The bus to Vaasa left at five in the morning." },
+                    { fi: "Nyt he ovat perillä.", en: "Now they have arrived at their destination." },
+                    { fi: "Heini ja John tulivat Vaasaan, koska he halusivat nähdä KAJ:n.", en: "Heini and John came to Vaasa because they wanted to see KAJ." },
+                    { fi: "KAJ on Heinin lempibändi ja tänään KAJ esiintyy Vaasassa.", en: "KAJ is Heini's favorite band, and today KAJ is performing in Vaasa." },
+                    { fi: "Konsertti on hyvä. Heini nauttii illasta ja musiikista.", en: "The concert is good. Heini enjoys the evening and the music." },
+                    { fi: "Myös John tykkää KAJ:sta mutta hän on vähän väsynyt ja haluaa hotelliin nukkumaan.", en: "John also likes KAJ, but he is a little tired and wants to go to the hotel to sleep." },
+                    { fi: "John ja Heini laulavat ja tanssivat.", en: "John and Heini sing and dance." }
+                ],
+                vocab: [
+                    { word: "loppukesä", base: "loppukesä", meaning: "late summer", lesson: 2 },
+                    { word: "elokuuta", base: "elokuu", meaning: "August (date form)", lesson: 2 },
+                    { word: "heräsivät", base: "herätä", meaning: "they woke up", lesson: 2 },
+                    { word: "aikaisin", base: "aikaisin", meaning: "early", lesson: 2 },
+                    { word: "perillä", base: "perillä", meaning: "at destination", lesson: 2 },
+                    { word: "tulivat", base: "tulla", meaning: "they came", lesson: 2 },
+                    { word: "koska", base: "koska", meaning: "because", lesson: 2 },
+                    { word: "lempibändi", base: "lempibändi", meaning: "favorite band", lesson: 2 },
+                    { word: "esiintyy", base: "esiintyä", meaning: "performs", lesson: 2 },
+                    { word: "väsynyt", base: "väsynyt", meaning: "tired", lesson: 2 },
+                    { word: "onneksi", base: "onneksi", meaning: "fortunately", lesson: 2 }
+                ],
+                questions: [
+                    {
+                        q: "Milloin bussi Vaasaan lähti?",
+                        type: "short",
+                        answer: "aamulla kello viisi",
+                        explanation: "The text says: 'Bussi Vaasaan lähti aamulla kello viisi.'"
+                    },
+                    {
+                        q: "Miksi Heini ja John tulivat Vaasaan?",
+                        type: "short",
+                        answer: "koska he halusivat nähdä KAJ:n",
+                        explanation: "They came because they wanted to see KAJ."
+                    },
+                    {
+                        q: "Oikein vai väärin? Konserttiin on paljon lippuja jäljellä.",
+                        options: ["A) Oikein (True)", "B) Väärin (False)"],
+                        answer: 1,
+                        explanation: "False. 'Konsertti on loppuunmyyty' (The concert is sold out)."
+                    },
+                    {
+                        q: "Täydennä imperfektissä: He _________ aikaisin. (herätä)",
+                        type: "short",
+                        answer: "heräsivät",
+                        explanation: "Past tense (imperfekti) of herätä for 'he' (they) is heräsivät."
+                    },
+                    {
+                        q: "Valitse oikea konjunktio: Ilta on lämmin, _________ on jo elokuu.",
+                        options: ["A) koska", "B) vaikka", "C) mutta"],
+                        answer: 1,
+                        explanation: "Vaikka means 'although / even though'."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "John Turussa ja Ahvenanmaalla",
+                subtitle: "John in Turku and Åland | Sightseeing, Transport & Postcards",
+                theme: "Travel, History, Archipelago",
+                imagePlaceholder: "https://placehold.co/600x400/0369a1/ffffff?text=John+Turussa+ja+Ahvenanmaalla",
+                sentences: [
+                    { fi: "John ajaa Turkuun. Hänellä on vapaapäivä.", en: "John drives to Turku. He has a day off." },
+                    { fi: "Hän käy Turun linnassa. Lippu maksaa vain 8 euroa.", en: "He visits Turku Castle. The ticket costs only 8 euros." },
+                    { fi: "Turun keskustassa on Aurajoki. John kävelee Aurajoen rannalla.", en: "The Aura River is in the center of Turku. John walks along the Aura River." },
+                    { fi: "Hän yöpyy hotellissa keskustan lähellä.", en: "He stays overnight at a hotel near the center." },
+                    { fi: "Seuraavana päivänä John lähtee laivalla Ahvenanmaalle.", en: "The next day, John leaves for Åland by ferry." },
+                    { fi: "Ahvenanmaalla John on 3 päivää. Hän pyöräilee paljon, syö kalaa ja ui meressä.", en: "John spends 3 days in Åland. He cycles a lot, eats fish, and swims in the sea." },
+                    { fi: "\"Turun linna on kiinnostava nähtävyys. Suosittelen käymään siellä!\"", en: "\"Turku Castle is an interesting attraction. I recommend visiting it!\"" }
+                ],
+                vocab: [
+                    { word: "vapaapäivä", base: "vapaapäivä", meaning: "day off", lesson: 3 },
+                    { word: "linnassa", base: "linna", meaning: "in the castle", lesson: 3 },
+                    { word: "opiskelija", base: "opiskelija", meaning: "student", lesson: 3 },
+                    { word: "keskustassa", base: "keskusta", meaning: "in the city center", lesson: 3 },
+                    { word: "yöpyy", base: "yöpyä", meaning: "stays overnight", lesson: 3 },
+                    { word: "laivalla", base: "laiva", meaning: "by ferry", lesson: 3 },
+                    { word: "pyöräilee", base: "pyöräillä", meaning: "cycles", lesson: 3 },
+                    { word: "suosittelen", base: "suositella", meaning: "I recommend", lesson: 3 }
+                ],
+                questions: [
+                    {
+                        q: "Miksi lippu Turun linnaan maksaa vain 8 euroa?",
+                        type: "short",
+                        answer: "koska John on opiskelija",
+                        explanation: "Because John is a student."
+                    },
+                    {
+                        q: "Missä John yöpyy Turussa?",
+                        type: "short",
+                        answer: "hotellissa keskustan lähellä",
+                        explanation: "He stays at a hotel near the center."
+                    },
+                    {
+                        q: "Miten John matkustaa Ahvenanmaalle?",
+                        type: "short",
+                        answer: "laivalla",
+                        explanation: "By ferry (laivalla)."
+                    },
+                    {
+                        q: "Oikein vai väärin? John ui järvessä.",
+                        options: ["A) Oikein (True)", "B) Väärin (False)"],
+                        answer: 1,
+                        explanation: "False. He swims in the sea ('ui meressä')."
+                    },
+                    {
+                        q: "Kirjoita imperfektissä: Minä tulen Turkuun -> Minä _________ Turkuun.",
+                        type: "short",
+                        answer: "tulin",
+                        explanation: "Past tense of tulla for 'minä' is tulin."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Päivä Helsingissä",
+                subtitle: "A Day in Helsinki | City Public Transport & Sightseeing",
+                theme: "Capital City, Sightseeing",
+                imagePlaceholder: "https://placehold.co/600x400/b45309/ffffff?text=Paiva+Helsingissa",
+                sentences: [
+                    { fi: "Tänään matkustan Helsinkiin!", en: "Today I am traveling to Helsinki!" },
+                    { fi: "Tutustun Helsingin turistikohteisiin.", en: "I will explore Helsinki's tourist attractions." },
+                    { fi: "Tuomiokirkko on kaunis!", en: "The cathedral is beautiful!" },
+                    { fi: "Ostan jäätelön kauppatorilta.", en: "I am buying an ice cream at the Market Square." },
+                    { fi: "Lautalla merelle!", en: "To the sea by ferry!" },
+                    { fi: "Suomenlinna on hieno!", en: "Suomenlinna is wonderful!" },
+                    { fi: "Olipa hauska päivä.", en: "What a fun day it was!" }
+                ],
+                vocab: [
+                    { word: "matkustan", base: "matkustaa", meaning: "I travel", lesson: 4 },
+                    { word: "turistikohteisiin", base: "turistikohde", meaning: "to tourist attractions", lesson: 4 },
+                    { word: "tuomiokirkko", base: "tuomiokirkko", meaning: "cathedral", lesson: 4 },
+                    { word: "kauppatorilta", base: "kauppatori", meaning: "from Market Square", lesson: 4 },
+                    { word: "lautalla", base: "lautta", meaning: "by ferry", lesson: 4 },
+                    { word: "olipa", base: "olla + -pa", meaning: "what a... it was", lesson: 4 }
+                ],
+                questions: [
+                    {
+                        q: "Mihin henkilö matkustaa?",
+                        type: "short",
+                        answer: "Helsinkiin",
+                        explanation: "To Helsinki (Helsinkiin)."
+                    },
+                    {
+                        q: "Mistä hän ostaa jäätelön?",
+                        type: "short",
+                        answer: "kauppatorilta",
+                        explanation: "From the Market Square (kauppatorilta)."
+                    },
+                    {
+                        q: "Onko Tuomiokirkko kaunis?",
+                        options: ["A) Kyllä", "B) Ei"],
+                        answer: 0,
+                        explanation: "Yes, 'Tuomiokirkko on kaunis!'"
+                    },
+                    {
+                        q: "Valitse oikea muoto: Tutustun _________ (turistikohteet).",
+                        options: ["A) turistikohteissa", "B) turistikohteisiin", "C) turistikohteista"],
+                        answer: 1,
+                        explanation: "Verb tutustua governs the illative case: turistikohteisiin."
+                    },
+                    {
+                        q: "Miten hän menee merelle?",
+                        type: "short",
+                        answer: "lautalla",
+                        explanation: "By ferry (lautalla)."
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Amina Itä-Suomessa",
+                subtitle: "Amina in Eastern Finland | Train, Nature, Lakes & Local Delicacies",
+                theme: "Eastern Finland, Karelian Culture",
+                imagePlaceholder: "https://placehold.co/600x400/047857/ffffff?text=Amina+Ita-Suomessa",
+                sentences: [
+                    { fi: "Amina matkustaa junalla Itä-Suomeen. Hän näkee paljon metsää ja järviä.", en: "Amina travels by train to Eastern Finland. She sees lots of forest and lakes." },
+                    { fi: "Joensuu on rauhallinen ja vihreä kaupunki. Aminan ystävä Heini opiskelee Joensuussa.", en: "Joensuu is a peaceful and green city. Amina's friend Heini studies in Joensuu." },
+                    { fi: "Amina ja Heini käyvät yhdessä Kolin kansallispuistossa.", en: "Amina and Heini visit Koli National Park together." },
+                    { fi: "Amina nousee korkealle mäelle, Ukko-Kolille. Hän näkee suuren järven, Pielisen.", en: "Amina climbs to Ukko-Koli and sees the large lake Pielinen." },
+                    { fi: "Amina matkustaa Savonlinnaan, jossa on historiallinen Olavinlinna.", en: "Amina travels to Savonlinna, which has the historic Olavinlinna Castle." },
+                    { fi: "Amina maistaa itäsuomalaista ruokaa torilla: karjalanpiirakkaa ja kalakukkoa.", en: "Amina tastes Eastern Finnish food at the market: Karelian pie and kalakukko." }
+                ],
+                vocab: [
+                    { word: "junalla", base: "juna", meaning: "by train", lesson: 5 },
+                    { word: "Itä-Suomeen", base: "Itä-Suomi", meaning: "to Eastern Finland", lesson: 5 },
+                    { word: "kansallispuistossa", base: "kansallispuisto", meaning: "in the national park", lesson: 5 },
+                    { word: "nousee", base: "nousta", meaning: "climbs", lesson: 5 },
+                    { word: "karjalanpiirakkaa", base: "karjalanpiirakka", meaning: "Karelian pie (partitive)", lesson: 5 },
+                    { word: "kalakukkoa", base: "kalakukko", meaning: "fish-filled bread (partitive)", lesson: 5 }
+                ],
+                questions: [
+                    {
+                        q: "Millä Amina matkustaa Itä-Suomeen?",
+                        type: "short",
+                        answer: "junalla",
+                        explanation: "By train (junalla)."
+                    },
+                    {
+                        q: "Missä Heini opiskelee?",
+                        type: "short",
+                        answer: "Joensuussa",
+                        explanation: "In Joensuu."
+                    },
+                    {
+                        q: "Mikä järvi näkyy Ukko-Kolilta?",
+                        type: "short",
+                        answer: "Pielinen",
+                        explanation: "Lake Pielinen."
+                    },
+                    {
+                        q: "Mitä Amina syö torilla?",
+                        type: "short",
+                        answer: "karjalanpiirakkaa ja kalakukkoa",
+                        explanation: "Karelian pie and kalakukko."
+                    },
+                    {
+                        q: "Oikein vai väärin? Amina käy Puijon näkötornissa Savonlinnassa.",
+                        options: ["A) Oikein (True)", "B) Väärin (False)"],
+                        answer: 1,
+                        explanation: "False. Puijo tower is in Kuopio, not Savonlinna."
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "Yleisessä saunassa Tampereella",
+                subtitle: "At a Public Sauna in Tampere | Culture, Swimming & Donuts",
+                theme: "Sauna Culture, Tampere",
+                imagePlaceholder: "https://placehold.co/600x400/9a3412/ffffff?text=Saunassa+Tampereella",
+                sentences: [
+                    { fi: "Syyskuussa Ali ja Amina tekevät retken Tampereelle.", en: "In September, Ali and Amina take a trip to Tampere." },
+                    { fi: "Tampereella on monta yleistä saunaa. He haluavat tutustua saunakulttuuriin.", en: "There are many public saunas in Tampere. They want to explore sauna culture." },
+                    { fi: "Saunassa on kuuma, kiuas höyryää ja he heittävät löylyä.", en: "It is hot in the sauna, the stove steams, and they throw water on the stones." },
+                    { fi: "Amina on rohkea ja ehdottaa: \"Uidaan vähän!\"", en: "Amina is brave and suggests: 'Let's swim a little!'" },
+                    { fi: "Ali pelkää, että vesi on kylmää, mutta menee silti uimaan.", en: "Ali is afraid the water is cold, but nevertheless goes swimming." },
+                    { fi: "\"Mennään Pyynikin näkötornille syömään munkit!\"", en: "\"Let's go to the Pyynikki observation tower to eat doughnuts!\"" }
+                ],
+                vocab: [
+                    { word: "syyskuussa", base: "syyskuu", meaning: "in September", lesson: 6 },
+                    { word: "yleistä", base: "yleinen", meaning: "public (partitive)", lesson: 6 },
+                    { word: "saunakulttuuriin", base: "saunakulttuuri", meaning: "to sauna culture", lesson: 6 },
+                    { word: "pukuhuoneeseen", base: "pukuhuone", meaning: "into changing room", lesson: 6 },
+                    { word: "kiuas", base: "kiuas", meaning: "sauna stove", lesson: 6 },
+                    { word: "löylyä", base: "löyly", meaning: "sauna steam", lesson: 6 },
+                    { word: "jälkeen", base: "jälkeen", meaning: "after", lesson: 6 },
+                    { word: "munkit", base: "munkki", meaning: "doughnuts", lesson: 6 }
+                ],
+                questions: [
+                    {
+                        q: "Missä Ali ja Amina tapaavat?",
+                        type: "short",
+                        answer: "rautatieasemalla",
+                        explanation: "At the railway station."
+                    },
+                    {
+                        q: "Mitä he tekevät ennen saunaa?",
+                        type: "short",
+                        answer: "maksavat pääsymaksun ja jättävät vaatteet pukuhuoneeseen",
+                        explanation: "They pay the entrance fee and leave clothes in the changing room."
+                    },
+                    {
+                        q: "Kuka ehdottaa uimista?",
+                        type: "short",
+                        answer: "Amina",
+                        explanation: "Amina suggests swimming."
+                    },
+                    {
+                        q: "Oikein vai väärin? Ali ei mene uimaan.",
+                        options: ["A) Oikein (True)", "B) Väärin (False)"],
+                        answer: 1,
+                        explanation: "False. Despite fearing the cold water, he goes swimming."
+                    },
+                    {
+                        q: "Mihin he menevät lopuksi?",
+                        type: "short",
+                        answer: "Pyynikin näkötornille syömään munkit",
+                        explanation: "To Pyynikki observation tower to eat doughnuts."
+                    }
+                ]
+            }
+        ];
+
+        // Grammar & Reference Data
+        const questionWords = [
+            { fi: "Mikä? / Mitä?", en: "What?" },
+            { fi: "Kuka? / Ketkä?", en: "Who?" },
+            { fi: "Missä?", en: "Where (in/at)? (Static location)" },
+            { fi: "Mihin? / Minne?", en: "Where to? (Movement towards)" },
+            { fi: "Mistä?", en: "Where from? (Movement away)" },
+            { fi: "Milloin?", en: "When?" },
+            { fi: "Miksi?", en: "Why?" },
+            { fi: "Miten? / Millä?", en: "How? / By what means?" },
+            { fi: "Kuinka paljon?", en: "How much? / How many?" }
+        ];
+
+        const grammarPatterns = [
+            { pattern: "Tykätä + -sta / -stä", example: "Tykkään musiikista.", meaning: "I like music." },
+            { pattern: "Nauttia + -sta / -stä", example: "Nautin hiihdosta.", meaning: "I enjoy skiing." },
+            { pattern: "Tutustua + illative (-miin / -hyn)", example: "Tutustun kaupunkiin.", meaning: "I explore the city." },
+            { pattern: "Mennä + -maan / -mään", example: "Menen nukkumaan.", meaning: "I go to sleep." },
+            { pattern: "Suositella + -maan / -mään", example: "Suosittelen käymään siellä.", meaning: "I recommend visiting there." },
+            { pattern: "Genitive + jälkeen", example: "Saunan jälkeen.", meaning: "After the sauna." },
+            { pattern: "Possession -lla / -llä + on", example: "Minulla on vapaapäivä.", meaning: "I have a day off." },
+            { pattern: "Reason: koska", example: "Lähdin, koska olin väsynyt.", meaning: "I left because I was tired." },
+            { pattern: "Contrast: vaikka", example: "Menin, vaikka satoi.", meaning: "I went although it rained." }
+        ];
+
+        const modelPhrases = [
+            { fi: "Viime viikonloppuna kävin Turussa.", en: "Last weekend I visited Turku." },
+            { fi: "Matkustin sinne junalla.", en: "I traveled there by train." },
+            { fi: "Siellä oli kaunista.", en: "It was beautiful there." },
+            { fi: "Kävin museossa ja söin hyvää ruokaa.", en: "I visited a museum and ate good food." },
+            { fi: "Pidin matkasta, koska sää oli hyvä.", en: "I liked the trip because the weather was good." },
+            { fi: "Suosittelen käymään siellä!", en: "I recommend visiting there!" }
+        ];
+
+        // State variables
+        let currentStoryId = 1;
+        let currentFlashcardIndex = 0;
+        let flashcardList = [];
+        let flashcardShowFront = true;
+
+        // Initialize App on load
+        window.onload = function() {
+            renderStorySelectors();
+            renderStory(1);
+            renderVocabularyTable();
+            renderQuiz();
+            renderGrammarReference();
+            initFlashcards();
+        };
+
+        // Navigation Tab Switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('bg-brand-50', 'text-brand-700');
+                el.classList.add('text-slate-600', 'hover:bg-slate-100');
+            });
+
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+                activeBtn.classList.add('bg-brand-50', 'text-brand-700');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render Stories
+        function renderStorySelectors() {
+            const container = document.getElementById('story-selector');
+            container.innerHTML = storiesData.map(story => `
+                <button onclick="renderStory(${story.id})" id="story-btn-${story.id}" class="story-tab-btn p-3 rounded-xl border text-left transition flex flex-col justify-between ${story.id === 1 ? 'border-brand-500 bg-brand-50 text-brand-900 shadow-sm' : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'}">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Lesson ${story.id}</span>
+                    <span class="text-sm font-bold mt-1 line-clamp-2">${story.title}</span>
+                </button>
+            `).join('');
+        }
+
+        function renderStory(id) {
+            currentStoryId = id;
+            document.querySelectorAll('.story-tab-btn').forEach(btn => {
+                btn.classList.remove('border-brand-500', 'bg-brand-50', 'text-brand-900', 'shadow-sm');
+                btn.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+            });
+            const activeBtn = document.getElementById(`story-btn-${id}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+                activeBtn.classList.add('border-brand-500', 'bg-brand-50', 'text-brand-900', 'shadow-sm');
+            }
+
+            const story = storiesData.find(s => s.id === id);
+            const viewer = document.getElementById('story-viewer');
+            
+            viewer.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6 items-center border-b border-slate-100 pb-6">
+                    <div class="w-full md:w-1/2 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-slate-100 relative group">
+                        <img src="${story.imagePlaceholder}" alt="${story.title}" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-4">
+                            <span class="text-white text-sm font-medium"><i class="fa-solid fa-image mr-1.5"></i> Story ${story.id} Illustration</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-3">
+                        <span class="bg-brand-100 text-brand-800 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Lesson ${story.id}</span>
+                        <h3 class="text-2xl font-bold text-slate-900">${story.title}</h3>
+                        <p class="text-slate-600 font-medium text-sm">${story.subtitle}</p>
+                        <p class="text-xs text-slate-500 italic"><i class="fa-solid fa-tag mr-1 text-brand-600"></i> Themes: ${story.theme}</p>
+                        <div class="pt-2 flex items-center space-x-3">
+                            <button onclick="speakStory(${story.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl text-sm font-medium transition flex items-center space-x-2">
+                                <i class="fa-solid fa-volume-high text-brand-600"></i>
+                                <span>Listen to Story</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-2">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400">Sentence-by-Sentence Translation</h4>
+                    <div class="space-y-3" id="sentences-list">
+                        ${story.sentences.map((s, idx) => `
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 transition space-y-1.5">
+                                <div class="flex items-start justify-between">
+                                    <p class="text-base font-semibold text-slate-900">${idx + 1}. ${s.fi}</p>
+                                    <button onclick="speakSentence('${s.fi.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-brand-600 p-1 text-sm" title="Listen">
+                                        <i class="fa-solid fa-volume-low"></i>
+                                    </button>
+                                </div>
+                                <p class="text-sm text-slate-600 pl-4 border-l-2 border-brand-500">${s.en}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 flex justify-between">
+                    <button onclick="navigateStory(-1)" class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition ${id === 1 ? 'opacity-50 cursor-not-allowed' : ''}">
+                        <i class="fa-solid fa-arrow-left mr-1.5"></i> Previous
+                    </button>
+                    <button onclick="navigateStory(1)" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-medium shadow-sm transition ${id === 6 ? 'opacity-50 cursor-not-allowed' : ''}">
+                        <span>Next</span>
+                        <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        function navigateStory(direction) {
+            const newId = currentStoryId + direction;
+            if (newId >= 1 && newId <= 6) {
+                renderStory(newId);
+                window.scrollTo({ top: 300, behavior: 'smooth' });
+            }
+        }
+
+        function speakSentence(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'fi-FI';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function speakStory(id) {
+            const story = storiesData.find(s => s.id === id);
+            if (!story) return;
+            const fullText = story.sentences.map(s => s.fi).join('. ');
+            speakSentence(fullText);
+        }
+
+        // Vocabulary Table & Search
+        function renderVocabularyTable(filterText = '', lessonFilter = 'all') {
+            const tbody = document.getElementById('vocab-table-body');
+            let allVocab = [];
+            storiesData.forEach(s => {
+                s.vocab.forEach(v => {
+                    allVocab.push({ ...v, lessonTitle: `Lesson ${s.id}` });
+                });
+            });
+
+            const filtered = allVocab.filter(item => {
+                const matchesText = item.word.toLowerCase().includes(filterText.toLowerCase()) ||
+                                    item.base.toLowerCase().includes(filterText.toLowerCase()) ||
+                                    item.meaning.toLowerCase().includes(filterText.toLowerCase());
+                const matchesLesson = lessonFilter === 'all' || item.lesson.toString() === lessonFilter;
+                return matchesText && matchesLesson;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-400">No vocabulary words found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(item => `
+                <tr class="hover:bg-slate-50/80 transition">
+                    <td class="py-3 px-4 font-semibold text-slate-900">${item.word}</td>
+                    <td class="py-3 px-4 text-brand-700 font-medium">${item.base}</td>
+                    <td class="py-3 px-4 text-slate-600">${item.meaning}</td>
+                    <td class="py-3 px-4 text-xs">
+                        <span class="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">Lesson ${item.lesson}</span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterVocabulary() {
+            const search = document.getElementById('vocab-search').value;
+            const lesson = document.getElementById('vocab-lesson-filter').value;
+            renderVocabularyTable(search, lesson);
+        }
+
+        // Flashcard Modal Logic
+        function initFlashcards() {
+            flashcardList = [];
+            storiesData.forEach(s => {
+                s.vocab.forEach(v => {
+                    flashcardList.push({ ...v, lessonId: s.id });
+                });
+            });
+            flashcardList.sort(() => Math.random() - 0.5);
+            currentFlashcardIndex = 0;
+            flashcardShowFront = true;
+        }
+
+        function openFlashcardModal() {
+            initFlashcards();
+            document.getElementById('flashcard-modal').classList.remove('hidden');
+            updateFlashcardDisplay();
+        }
+
+        function closeFlashcardModal() {
+            document.getElementById('flashcard-modal').classList.add('hidden');
+        }
+
+        function updateFlashcardDisplay() {
+            if (flashcardList.length === 0) return;
+            const card = flashcardList[currentFlashcardIndex];
+            document.getElementById('flashcard-counter').innerText = `Card ${currentFlashcardIndex + 1} of ${flashcardList.length}`;
+            document.getElementById('flashcard-lesson-tag').innerText = `Lesson ${card.lessonId}`;
+            
+            const frontEl = document.getElementById('flashcard-content');
+            if (flashcardShowFront) {
+                frontEl.innerHTML = `
+                    <span class="text-xs text-slate-400 uppercase tracking-wider block mb-1">Word in Story</span>
+                    <span class="text-2xl font-bold text-slate-900">${card.word}</span>
+                    <span class="text-xs text-slate-500 block mt-2">(Click to see base form & meaning)</span>
+                `;
+            } else {
+                frontEl.innerHTML = `
+                    <span class="text-xs text-brand-600 uppercase tracking-wider block mb-1">Base Form: ${card.base}</span>
+                    <span class="text-xl font-bold text-brand-800">${card.meaning}</span>
+                    <span class="text-xs text-slate-500 block mt-2">(Click to flip back)</span>
+                `;
+            }
+        }
+
+        function flipFlashcard() {
+            flashcardShowFront = !flashcardShowFront;
+            updateFlashcardDisplay();
+        }
+
+        function nextFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex + 1) % flashcardList.length;
+            flashcardShowFront = true;
+            updateFlashcardDisplay();
+        }
+
+        function prevFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex - 1 + flashcardList.length) % flashcardList.length;
+            flashcardShowFront = true;
+            updateFlashcardDisplay();
+        }
+
+        // Quiz Logic
+        function renderQuiz() {
+            const select = document.getElementById('quiz-lesson-select').value;
+            const container = document.getElementById('quiz-questions-container');
+            
+            let questionsToDisplay = [];
+            if (select === 'all') {
+                storiesData.forEach(s => {
+                    s.questions.forEach((q, idx) => {
+                        questionsToDisplay.push({ ...q, lessonId: s.id, globalIdx: questionsToDisplay.length });
+                    });
+                });
+            } else {
+                const s = storiesData.find(st => st.id.toString() === select);
+                if (s) {
+                    s.questions.forEach((q, idx) => {
+                        questionsToDisplay.push({ ...q, lessonId: s.id, globalIdx: idx });
+                    });
+                }
+            }
+
+            document.getElementById('quiz-score-badge').innerText = `Questions: ${questionsToDisplay.length}`;
+
+            container.innerHTML = questionsToDisplay.map((item, idx) => `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4 quiz-card" data-qid="${idx}" data-answer="${item.answer}" data-type="${item.options ? 'choice' : 'short'}">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Lesson ${item.lessonId} • Question ${idx + 1}</span>
+                    </div>
+                    <p class="text-base font-bold text-slate-900">${item.q}</p>
+                    
+                    ${item.options ? `
+                        <div class="space-y-2 pt-2">
+                            ${item.options.map((opt, optIdx) => `
+                                <label class="flex items-center space-x-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="radio" name="q-${idx}" value="${optIdx}" class="text-brand-600 focus:ring-brand-500 h-4 w-4">
+                                    <span class="text-sm font-medium text-slate-700">${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    ` : `
+                        <div class="pt-2">
+                            <input type="text" placeholder="Type your Finnish answer here..." class="quiz-input w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" data-qid="${idx}">
+                        </div>
+                    `}
+
+                    <div class="quiz-feedback hidden mt-3 p-3 rounded-xl text-sm font-medium"></div>
+                </div>
+            `).join('');
+        }
+
+        function loadQuizForLesson() {
+            renderQuiz();
+        }
+
+        function submitQuiz() {
+            const cards = document.querySelectorAll('.quiz-card');
+            let correctCount = 0;
+            let totalCount = cards.length;
+
+            cards.forEach(card => {
+                const type = card.getAttribute('data-type');
+                const expectedAnswer = card.getAttribute('data-answer');
+                const feedbackEl = card.querySelector('.quiz-feedback');
+                feedbackEl.classList.remove('hidden');
+
+                if (type === 'choice') {
+                    const selected = card.querySelector('input[type="radio"]:checked');
+                    if (selected && parseInt(selected.value) === parseInt(expectedAnswer)) {
+                        correctCount++;
+                        feedbackEl.className = "quiz-feedback mt-3 p-3 rounded-xl text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-check mr-1.5"></i> Correct!`;
+                    } else {
+                        feedbackEl.className = "quiz-feedback mt-3 p-3 rounded-xl text-sm font-medium bg-rose-50 text-rose-800 border border-rose-200";
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-xmark mr-1.5"></i> Incorrect. Correct option was index ${parseInt(expectedAnswer) + 1}.`;
+                    }
+                } else {
+                    const input = card.querySelector('input[type="text"]');
+                    const val = input.value.trim().toLowerCase();
+                    if (val === expectedAnswer.toLowerCase()) {
+                        correctCount++;
+                        feedbackEl.className = "quiz-feedback mt-3 p-3 rounded-xl text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-check mr-1.5"></i> Correct! Answer: <b>${expectedAnswer}</b>`;
+                    } else {
+                        feedbackEl.className = "quiz-feedback mt-3 p-3 rounded-xl text-sm font-medium bg-rose-50 text-rose-800 border border-rose-200";
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-xmark mr-1.5"></i> Incorrect. Expected answer: <b>${expectedAnswer}</b>`;
+                    }
+                }
+            });
+
+            document.getElementById('quiz-score-badge').innerText = `Score: ${correctCount} / ${totalCount}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            renderQuiz();
+        }
+
+        // Grammar & Tips Tab Rendering
+        function renderGrammarReference() {
+            const qwGrid = document.getElementById('question-words-grid');
+            qwGrid.innerHTML = questionWords.map(qw => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <p class="text-sm font-bold text-purple-700">${qw.fi}</p>
+                    <p class="text-sm text-slate-600 mt-1">${qw.en}</p>
+                </div>
+            `).join('');
+
+            const gpBody = document.getElementById('grammar-patterns-body');
+            gpBody.innerHTML = grammarPatterns.map(gp => `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="py-3 px-4 font-semibold text-slate-900">${gp.pattern}</td>
+                    <td class="py-3 px-4 text-purple-700 font-medium">${gp.example}</td>
+                    <td class="py-3 px-4 text-slate-600">${gp.meaning}</td>
+                </tr>
+            `).join('');
+
+            const mpGrid = document.getElementById('model-phrases-grid');
+            mpGrid.innerHTML = modelPhrases.map(mp => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <p class="text-sm font-bold text-slate-900">${mp.fi}</p>
+                    <p class="text-sm text-slate-600">${mp.en}</p>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
